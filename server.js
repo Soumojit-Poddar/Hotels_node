@@ -5,6 +5,8 @@ const db = require('./db'); // Ensure database connection is properly configured
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+require('dotenv').config();
+
 const personRoutes = require('./routes/personRoutes.js');
 app.use('/person', personRoutes);
 
@@ -16,7 +18,8 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
